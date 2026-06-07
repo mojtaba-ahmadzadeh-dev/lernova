@@ -1,5 +1,6 @@
 import { BaseEntity } from "common/abestract/base.entity";
 import { EntityNames } from "common/enums/entity.enum";
+import { CourseCategoryEntity } from "modules/course/entities/course-category.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity(EntityNames.Category)
@@ -17,8 +18,8 @@ export class CategoryEntity extends BaseEntity {
   parent: CategoryEntity;
   @OneToMany(() => CategoryEntity, (category) => category.parent)
   children: CategoryEntity[];
-  // @OneToMany(() => CourseCategoryEntity, (course) => course.category)
-  // course_categories: CourseCategoryEntity[];
+  @OneToMany(() => CourseCategoryEntity, (course) => course.category)
+  course_categories: CourseCategoryEntity[];
   // @OneToMany(() => BlogCategoryEntity, (blog) => blog.category)
   // blog_categories: BlogCategoryEntity[];
 }

@@ -1,4 +1,3 @@
-
 import {
   Entity,
   Column,
@@ -10,7 +9,7 @@ import { otpEntity } from "./otp.entity";
 import { EntityNames } from "common/enums/entity.enum";
 import { BaseEntity } from "common/abestract/base.entity";
 import { Role } from "common/enums/role.enum";
-
+import { CourseEntity } from "modules/course/entities/course.entity";
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {
@@ -36,4 +35,6 @@ export class UserEntity extends BaseEntity {
   updatedAt: Date;
   @OneToMany(() => otpEntity, (otp) => otp.user)
   otps: otpEntity[];
+  @OneToMany(() => CourseEntity, (course) => course.teacher, { cascade: true })
+  taughtCourses: CourseEntity[];
 }
