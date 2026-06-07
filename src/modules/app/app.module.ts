@@ -11,6 +11,7 @@ import { HttpModule } from "@nestjs/axios";
 import { AuthModule } from "../auth/auth.module";
 import { UserModule } from "../user/user.module";
 import { TypeOrmDbConfig } from "../../config/typeorm.config";
+import { CategoryModule } from "modules/category/category.module";
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TypeOrmDbConfig } from "../../config/typeorm.config";
     }),
     AuthModule,
     UserModule,
+    CategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],
