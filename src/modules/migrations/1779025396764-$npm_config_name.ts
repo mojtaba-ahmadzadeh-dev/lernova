@@ -1,5 +1,6 @@
-import { EntityNames } from "src/common/enums/entity.enum";
-import { Role } from "src/common/enums/role.enum";
+
+import { EntityNames } from "common/enums/entity.enum";
+import { Role } from "common/enums/role.enum";
 import {
   MigrationInterface,
   QueryRunner,

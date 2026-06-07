@@ -8,8 +8,9 @@ import {
   IsEnum,
   ValidateIf,
 } from "class-validator";
-import { AuthMethod } from "src/common/enums/auth-method.enum";
-import { AuthMessages } from "src/common/enums/message.enum";
+import { AuthMethod } from "common/enums/auth-method.enum";
+import { AuthMessages } from "common/enums/message.enum";
+
 
 export class CheckOtpDto {
   @ApiProperty({

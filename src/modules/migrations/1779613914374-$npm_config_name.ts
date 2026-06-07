@@ -1,3 +1,4 @@
+import { EntityNames } from "common/enums/entity.enum";
 import {
   MigrationInterface,
   QueryRunner,
@@ -5,7 +6,6 @@ import {
   TableColumn,
   TableForeignKey,
 } from "typeorm";
-import { EntityNames } from "src/common/enums/entity.enum";
 
 export class CreateBasketTable1779613914374 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

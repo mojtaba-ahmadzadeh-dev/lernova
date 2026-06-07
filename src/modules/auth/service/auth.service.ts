@@ -8,9 +8,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { UserEntity } from "../../user/entities/user.entity";
 import { Repository } from "typeorm";
 import { otpEntity } from "../../user/entities/otp.entity";
-import { Role } from "src/common/enums/role.enum";
 import { TokenService } from "./token.service";
-import { AuthMessages } from "src/common/enums/message.enum";
+import { AuthMessages } from "common/enums/message.enum";
+import { Role } from "common/enums/role.enum";
+
 
 @Injectable()
 export class AuthService {
