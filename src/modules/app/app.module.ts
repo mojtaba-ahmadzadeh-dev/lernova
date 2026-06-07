@@ -10,7 +10,7 @@ import { join } from "path";
 import { HttpModule } from "@nestjs/axios";
 import { AuthModule } from "../auth/auth.module";
 import { UserModule } from "../user/user.module";
-import { TypeOrmDbConfig } from "../config/typeorm.config";
+import { TypeOrmDbConfig } from "../../config/typeorm.config";
 
 @Module({
   imports: [

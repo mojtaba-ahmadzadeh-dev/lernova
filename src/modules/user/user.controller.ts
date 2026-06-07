@@ -8,6 +8,7 @@ import {
   UseInterceptors,
   UploadedFiles,
   Query,
+  Delete,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { ApiConsumes } from "@nestjs/swagger";
@@ -71,13 +72,19 @@ export class UserController {
 
   @Post("/admin/create-user")
   @CanAccess(Role.Admin)
-  async adminCreateUser(@Body() adminCreateUserDto: AdminCreateUserDto) {
-    return await this.userService.adminCreateUser(adminCreateUserDto);
+  adminCreateUser(@Body() adminCreateUserDto: AdminCreateUserDto) {
+    return this.userService.adminCreateUser(adminCreateUserDto);
   }
 
   @Get("/ban/:userId")
   @CanAccess(Role.Admin)
   toggleBanUser(@Param("userId") userId: number) {
     return this.userService.toggleBanUser(+userId);
+  }
+
+  @Delete("/delete/:id")
+  @CanAccess(Role.Admin)
+  deleteUser(@Param("id") userId: number) {
+    return this.userService.deleteUser(userId);
   }
 }

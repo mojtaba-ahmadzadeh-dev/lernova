@@ -22,7 +22,6 @@ import { UserMessages } from "common/enums/message.enum";
 import { Role } from "common/enums/role.enum";
 import { UserEntity } from "./entities/user.entity";
 
-
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
   constructor(
@@ -150,6 +149,20 @@ export class UserService {
         ? UserMessages.USER_BANNED
         : UserMessages.USER_UNBANNED,
       isBanned: user.isBanned,
+    };
+  }
+
+  async deleteUser(userId: number) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+
+    if (!user) throw new NotFoundException(UserMessages.USER_NOT_FOUND);
+
+    await this.userRepository.remove(user);
+
+    return {
+      message: UserMessages.USER_DELETED,
     };
   }
 }

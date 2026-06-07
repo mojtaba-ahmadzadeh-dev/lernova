@@ -29,6 +29,7 @@ export enum UserMessages {
   USER_ALREADY_EXISTS = "کاربری با این مشخصات قبلاً ثبت‌نام کرده است",
   USER_BANNED = "کاربر با موفقیت مسدود شد",
   USER_UNBANNED = "کاربر از حالت مسدود خارج شد",
+  USER_DELETED = "کاربر مورد نظر با موفقیت حذف شد",
 }
 
 export enum CategoryMessage {
