@@ -9,18 +9,19 @@ import { AdminCreateUserDto, CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { UserEntity } from "./entities/user.entity";
 import { REQUEST } from "@nestjs/core";
 import * as bcrypt from "bcrypt";
 import type { Request } from "express";
-import { deleteInvalidPropertyObject } from "src/common/utils/function.utils";
+import { PaginationDto } from "common/dto/pagination.dto";
 import {
   paginationGenerator,
   paginationSolver,
-} from "src/common/utils/pagination.utils";
-import { PaginationDto } from "src/common/dto/pagination.dto";
-import { Role } from "src/common/enums/role.enum";
-import { UserMessages } from "src/common/enums/message.enum";
+} from "common/utils/pagination.utils";
+import { deleteInvalidPropertyObject } from "common/utils/function.utils";
+import { UserMessages } from "common/enums/message.enum";
+import { Role } from "common/enums/role.enum";
+import { UserEntity } from "./entities/user.entity";
+
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
@@ -135,14 +136,11 @@ export class UserService {
   }
 
   async toggleBanUser(userId: number) {
-    const user = await this.userRepository.findOne({
-      where: { id: userId },
-    });
+    const user = await this.userRepository.findOneBy({ id: userId });
 
     if (!user) {
       throw new NotFoundException(UserMessages.USER_NOT_FOUND);
     }
-
     user.isBanned = !user.isBanned;
 
     await this.userRepository.save(user);

@@ -5,18 +5,12 @@ import {
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
-
 import { Request } from "express";
 import { isJWT } from "class-validator";
 import { Reflector } from "@nestjs/core";
-
-import { FORBIDDEN_MESSAGE } from "@nestjs/core/guards";
 import { AuthService } from "../service/auth.service";
-import {
-  ROLES_KEY,
-  SKIP_AUTH_KEY,
-} from "src/common/decorator/skip-auth-decorator";
-import { Role } from "src/common/enums/role.enum";
+import { ROLES_KEY, SKIP_AUTH_KEY } from "common/decorator/skip-auth-decorator";
+import { Role } from "common/enums/role.enum";
 
 @Injectable()
 export class AuthGuard implements CanActivate {

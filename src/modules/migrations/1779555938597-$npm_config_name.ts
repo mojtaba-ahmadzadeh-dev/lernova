@@ -1,9 +1,9 @@
+import { EntityNames } from "common/enums/entity.enum";
 import {
   MigrationInterface,
   QueryRunner,
   Table,
 } from "typeorm";
-import { EntityNames } from "src/common/enums/entity.enum";
 
 export class CreateDiscountTable1779555938597 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

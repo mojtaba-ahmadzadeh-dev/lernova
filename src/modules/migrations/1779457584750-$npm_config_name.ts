@@ -1,10 +1,10 @@
+import { EntityNames } from "common/enums/entity.enum";
 import {
   MigrationInterface,
   QueryRunner,
   Table,
   TableForeignKey,
 } from "typeorm";
-import { EntityNames } from "src/common/enums/entity.enum";
 
 export class CreateSesstionTable1779457584750 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

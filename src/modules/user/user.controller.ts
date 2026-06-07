@@ -5,27 +5,23 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
   UseInterceptors,
   UploadedFiles,
   Query,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { AuthDecorator } from "src/common/decorator/auth.decorator";
-import { CanAccess } from "src/common/decorator/skip-auth-decorator";
-import { Role } from "src/common/enums/role.enum";
 import { ApiConsumes } from "@nestjs/swagger";
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
-import {
-  multerDestination,
-  multerFileName,
-} from "src/common/utils/multer.util";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { Pagination } from "src/common/decorator/pagination.decorator";
-import { PaginationDto } from "src/common/dto/pagination.dto";
 import { AdminCreateUserDto, ChangeRoleDto } from "./dto/create-user.dto";
-import { SwaggerConsumes } from "src/common/enums/swagger-consumes.enum";
+import { AuthDecorator } from "common/decorator/auth.decorator";
+import { CanAccess } from "common/decorator/skip-auth-decorator";
+import { Role } from "common/enums/role.enum";
+import { Pagination } from "common/decorator/pagination.decorator";
+import { PaginationDto } from "common/dto/pagination.dto";
+import { SwaggerConsumes } from "common/enums/swagger-consumes.enum";
+import { multerDestination, multerFileName } from "common/utils/multer.util";
 
 @Controller("user")
 @AuthDecorator()
@@ -81,7 +77,7 @@ export class UserController {
 
   @Get("/ban/:userId")
   @CanAccess(Role.Admin)
-  toggleBanUser(@Param("userId") userId: string) {
+  toggleBanUser(@Param("userId") userId: number) {
     return this.userService.toggleBanUser(+userId);
   }
 }

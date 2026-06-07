@@ -1,4 +1,4 @@
-import { BaseEntity } from "src/common/abestract/base.entity";
+
 import {
   Entity,
   Column,
@@ -7,8 +7,10 @@ import {
   OneToMany,
 } from "typeorm";
 import { otpEntity } from "./otp.entity";
-import { EntityNames } from "src/common/enums/entity.enum";
-import { Role } from "src/common/enums/role.enum";
+import { EntityNames } from "common/enums/entity.enum";
+import { BaseEntity } from "common/abestract/base.entity";
+import { Role } from "common/enums/role.enum";
+
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {

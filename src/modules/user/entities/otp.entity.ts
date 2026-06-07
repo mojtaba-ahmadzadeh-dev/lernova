@@ -1,4 +1,3 @@
-import { BaseEntity } from "src/common/abestract/base.entity";
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +7,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { UserEntity } from "./user.entity";
-import { EntityNames } from "src/common/enums/entity.enum";
+import { BaseEntity } from "common/abestract/base.entity";
+import { EntityNames } from "common/enums/entity.enum";
 
 @Entity(EntityNames.Otp)
 export class otpEntity extends BaseEntity {

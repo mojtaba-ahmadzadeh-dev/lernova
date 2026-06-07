@@ -1,10 +1,10 @@
+import { EntityNames } from "common/enums/entity.enum";
 import {
   MigrationInterface,
   QueryRunner,
   Table,
   TableForeignKey,
 } from "typeorm";
-import { EntityNames } from "src/common/enums/entity.enum";
 
 export class CreateBlogRelatedTables1779463595197 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

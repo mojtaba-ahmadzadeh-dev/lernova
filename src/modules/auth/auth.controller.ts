@@ -3,7 +3,8 @@ import { AuthService } from "./service/auth.service";
 import { CheckOtpDto, SendOtpDto } from "./dto/create-auth.dto";
 import type { Response } from "express";
 import { ApiConsumes } from "@nestjs/swagger";
-import { SwaggerConsumes } from "src/common/enums/swagger-consumes.enum";
+import { SwaggerConsumes } from "common/enums/swagger-consumes.enum";
+
 
 @Controller("auth")
 export class AuthController {
