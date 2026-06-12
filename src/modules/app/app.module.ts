@@ -14,6 +14,7 @@ import { TypeOrmDbConfig } from "../../config/typeorm.config";
 import { CategoryModule } from "modules/category/category.module";
 import { CourseModule } from "modules/course/course.module";
 import { RbacModule } from "modules/rbac/rbac.module";
+import { ChapterModule } from "modules/chapter/chapter.module";
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { RbacModule } from "modules/rbac/rbac.module";
     UserModule,
     CategoryModule,
     CourseModule,
-    RbacModule
+    RbacModule,
+    ChapterModule
   ],
   controllers: [AppController],
   providers: [AppService],
