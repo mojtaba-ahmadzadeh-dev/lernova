@@ -21,12 +21,17 @@ import { deleteInvalidPropertyObject } from "common/utils/function.utils";
 import { UserMessages } from "common/enums/message.enum";
 import { Role } from "common/enums/role.enum";
 import { UserEntity } from "./entities/user.entity";
+import { RoleEntity } from "modules/rbac/entities/role.entity";
+
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+
+    @InjectRepository(RoleEntity)
+    private readonly roleRepository: Repository<RoleEntity>,
 
     @Inject(REQUEST) private request: Request,
   ) {}
@@ -52,7 +57,7 @@ export class UserService {
     const user = this.request.user;
 
     return await this.userRepository.findOne({
-      where: { id: user.id },
+      where: { id: user?.id },
     });
   }
 
@@ -92,17 +97,37 @@ export class UserService {
     };
   }
 
-  async changeUserRole(userId: number, role: string) {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
+  async changeUserRole(userId: number, roleName: string) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: {
+        role: true,
+      },
+    });
+
     if (!user) {
       throw new NotFoundException(UserMessages.USER_NOT_FOUND);
     }
-    if (!Object.values(Role).includes(role as Role)) {
+
+    const role = await this.roleRepository.findOne({
+      where: {
+        name: roleName,
+      },
+    });
+
+    if (!role) {
       throw new ConflictException(UserMessages.INVALID_ROLE);
     }
-    user.role = role as Role;
+
+    user.role = role;
+
     await this.userRepository.save(user);
-    return { message: UserMessages.ROLE_UPDATED };
+
+    return {
+      message: UserMessages.ROLE_UPDATED,
+    };
   }
 
   async adminCreateUser(adminCreateUserDto: AdminCreateUserDto) {
@@ -116,6 +141,16 @@ export class UserService {
       throw new ConflictException(UserMessages.USER_ALREADY_EXISTS);
     }
 
+    const roleEntity = await this.roleRepository.findOne({
+      where: {
+        name: role ?? "user",
+      },
+    });
+
+    if (!roleEntity) {
+      throw new ConflictException(UserMessages.INVALID_ROLE);
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = this.userRepository.create({
@@ -123,7 +158,7 @@ export class UserService {
       mobile,
       fullName,
       password: hashedPassword,
-      role: role || Role.User,
+      role: roleEntity,
       isVerified: true,
     });
 
@@ -133,7 +168,7 @@ export class UserService {
       message: "کاربر با موفقیت توسط ادمین ایجاد شد",
     };
   }
-
+  
   async toggleBanUser(userId: number) {
     const user = await this.userRepository.findOneBy({ id: userId });
 
@@ -151,7 +186,7 @@ export class UserService {
       isBanned: user.isBanned,
     };
   }
-
+  
   async deleteUser(userId: number) {
     const user = await this.userRepository.findOne({
       where: { id: userId },

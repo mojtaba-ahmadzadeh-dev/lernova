@@ -1,10 +1,10 @@
-import { applyDecorators, UseGuards } from "@nestjs/common";
-import { ApiCookieAuth } from "@nestjs/swagger";
-import { AuthGuard } from "modules/auth/guard/auth.guard";
+import { applyDecorators, UseGuards } from "@nestjs/common"
+import { ApiBearerAuth } from "@nestjs/swagger"
+import { RbacGuard } from "modules/rbac/guard/rbac.guard"
 
-export const AuthDecorator = () => {
-  return applyDecorators(
-    ApiCookieAuth("accessToken"),
-    UseGuards(AuthGuard),
-  );
-};
+export const RbacDecorator = () => {
+    return applyDecorators(
+        ApiBearerAuth("Authorization"),
+        UseGuards(RbacGuard)
+    )
+}
