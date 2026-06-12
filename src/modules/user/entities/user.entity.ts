@@ -15,6 +15,7 @@ import { RoleEntity } from "modules/rbac/entities/role.entity";
 import { BlogEntity } from "modules/blog/entities/blog.entity";
 import { BlogLikesEntity } from "modules/blog/entities/blog-likes.entity";
 import { BlogBookmarkEntity } from "modules/blog/entities/blog-bookmark.entity";
+import { CommentEntity } from "modules/comment/entities/comment.entity";
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {
@@ -54,4 +55,6 @@ export class UserEntity extends BaseEntity {
   blog_likes: BlogLikesEntity[];
   @OneToMany(() => BlogBookmarkEntity, (bookmarks) => bookmarks.user)
   blog_bookmarks: BlogBookmarkEntity[];
+  @OneToMany(() => CommentEntity, (comment) => comment.author)
+  comments: CommentEntity[];
 }

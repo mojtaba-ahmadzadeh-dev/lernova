@@ -11,6 +11,7 @@ import { EntityNames } from "common/enums/entity.enum";
 import { BaseEntity } from "common/abestract/base.entity";
 import { UserEntity } from "modules/user/entities/user.entity";
 import { ChapterEntity } from "modules/chapter/entities/chapter.entity";
+import { CommentEntity } from "modules/comment/entities/comment.entity";
 
 @Entity(EntityNames.Course)
 export class CourseEntity extends BaseEntity {
@@ -46,8 +47,8 @@ export class CourseEntity extends BaseEntity {
   teacher: UserEntity;
   @OneToMany(() => ChapterEntity, (chapter) => chapter.course)
   chapters: ChapterEntity[];
-  // @OneToMany(() => CommentEntity, (comment) => comment.course)
-  // comments: CommentEntity[];
+  @OneToMany(() => CommentEntity, (comment) => comment.course)
+  comments: CommentEntity[];
   // @OneToMany(() => BasketEntity, (basket) => basket.course)
   // baskets: BasketEntity[];
   // @OneToMany(() => OrderItemEntity, (order) => order.course)

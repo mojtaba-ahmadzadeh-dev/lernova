@@ -13,6 +13,7 @@ import { EntityNames } from "common/enums/entity.enum";
 import { BaseEntity } from "common/abestract/base.entity";
 import { BlogStatus } from "common/decorator/status.enum";
 import { UserEntity } from "modules/user/entities/user.entity";
+import { CommentEntity } from "modules/comment/entities/comment.entity";
 
 
 @Entity(EntityNames.Blog)
@@ -45,8 +46,8 @@ export class BlogEntity extends BaseEntity {
   likes: BlogLikesEntity[];
   @OneToMany(() => BlogBookmarkEntity, (bookmark) => bookmark.blog)
   bookmarks: BlogBookmarkEntity[];
-  // @OneToMany(() => CommentEntity, (comment) => comment.blog)
-  // comments: CommentEntity[];
+  @OneToMany(() => CommentEntity, (comment) => comment.blog)
+  comments: CommentEntity[];
   @CreateDateColumn()
   created_at: Date;
   @UpdateDateColumn()
