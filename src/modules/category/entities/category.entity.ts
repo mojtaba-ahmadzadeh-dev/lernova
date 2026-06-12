@@ -1,5 +1,6 @@
 import { BaseEntity } from "common/abestract/base.entity";
 import { EntityNames } from "common/enums/entity.enum";
+import { BlogCategoryEntity } from "modules/blog/entities/blog-category.entity";
 import { CourseCategoryEntity } from "modules/course/entities/course-category.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
@@ -20,6 +21,6 @@ export class CategoryEntity extends BaseEntity {
   children: CategoryEntity[];
   @OneToMany(() => CourseCategoryEntity, (course) => course.category)
   course_categories: CourseCategoryEntity[];
-  // @OneToMany(() => BlogCategoryEntity, (blog) => blog.category)
-  // blog_categories: BlogCategoryEntity[];
+  @OneToMany(() => BlogCategoryEntity, (blog) => blog.category)
+  blog_categories: BlogCategoryEntity[];
 }
