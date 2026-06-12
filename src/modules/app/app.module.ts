@@ -15,6 +15,7 @@ import { CategoryModule } from "modules/category/category.module";
 import { CourseModule } from "modules/course/course.module";
 import { RbacModule } from "modules/rbac/rbac.module";
 import { ChapterModule } from "modules/chapter/chapter.module";
+import { SesstionModule } from "modules/sesstion/sesstion.module";
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { ChapterModule } from "modules/chapter/chapter.module";
     CategoryModule,
     CourseModule,
     RbacModule,
-    ChapterModule
+    ChapterModule,
+    SesstionModule
   ],
   controllers: [AppController],
   providers: [AppService],

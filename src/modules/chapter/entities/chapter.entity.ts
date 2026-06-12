@@ -1,6 +1,7 @@
 import { BaseEntity } from "common/abestract/base.entity";
 import { EntityNames } from "common/enums/entity.enum";
 import { CourseEntity } from "modules/course/entities/course.entity";
+// import { SesstionEntity } from "modules/sesstion/entities/sesstion.entity";
 import {
   Column,
   CreateDateColumn,
