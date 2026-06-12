@@ -1,7 +1,7 @@
 import { BaseEntity } from "common/abestract/base.entity";
 import { EntityNames } from "common/enums/entity.enum";
 import { CourseEntity } from "modules/course/entities/course.entity";
-// import { SesstionEntity } from "modules/sesstion/entities/sesstion.entity";
+import { SesstionEntity } from "modules/sesstion/entities/sesstion.entity";
 import {
   Column,
   CreateDateColumn,
@@ -24,8 +24,8 @@ export class ChapterEntity extends BaseEntity {
     onDelete: "CASCADE",
   })
   course: CourseEntity;
-  // @OneToMany(() => SesstionEntity, (sesstion) => sesstion.chapter)
-  // sesstions: SesstionEntity[];
+  @OneToMany(() => SesstionEntity, (sesstion) => sesstion.chapter)
+  sesstions: SesstionEntity[];
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
