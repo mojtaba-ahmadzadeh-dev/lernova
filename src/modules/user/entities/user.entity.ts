@@ -12,6 +12,9 @@ import { EntityNames } from "common/enums/entity.enum";
 import { BaseEntity } from "common/abestract/base.entity";
 import { CourseEntity } from "modules/course/entities/course.entity";
 import { RoleEntity } from "modules/rbac/entities/role.entity";
+import { BlogEntity } from "modules/blog/entities/blog.entity";
+import { BlogLikesEntity } from "modules/blog/entities/blog-likes.entity";
+import { BlogBookmarkEntity } from "modules/blog/entities/blog-bookmark.entity";
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {
@@ -45,4 +48,10 @@ export class UserEntity extends BaseEntity {
   otps: otpEntity[];
   @OneToMany(() => CourseEntity, (course) => course.teacher, { cascade: true })
   taughtCourses: CourseEntity[];
+  @OneToMany(() => BlogEntity, (blog) => blog.author)
+  blogs: BlogEntity[];
+  @OneToMany(() => BlogLikesEntity, (like) => like.user)
+  blog_likes: BlogLikesEntity[];
+  @OneToMany(() => BlogBookmarkEntity, (bookmarks) => bookmarks.user)
+  blog_bookmarks: BlogBookmarkEntity[];
 }

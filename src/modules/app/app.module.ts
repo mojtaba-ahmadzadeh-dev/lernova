@@ -16,6 +16,7 @@ import { CourseModule } from "modules/course/course.module";
 import { RbacModule } from "modules/rbac/rbac.module";
 import { ChapterModule } from "modules/chapter/chapter.module";
 import { SesstionModule } from "modules/sesstion/sesstion.module";
+import { BlogModule } from "modules/blog/blog.module";
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { SesstionModule } from "modules/sesstion/sesstion.module";
     CourseModule,
     RbacModule,
     ChapterModule,
-    SesstionModule
+    SesstionModule,
+    BlogModule
   ],
   controllers: [AppController],
   providers: [AppService],
