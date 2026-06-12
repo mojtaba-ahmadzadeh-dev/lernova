@@ -13,14 +13,12 @@ import { CategoryService } from "./category.service";
 import { CategoryDto } from "./dto/create-category.dto";
 
 import { UpdateCategoryDto } from "./dto/update-category.dto";
-import { AuthDecorator } from "common/decorator/auth.decorator";
 import { CanAccess, SkipAuth } from "common/decorator/skip-auth-decorator";
 import { Role } from "common/enums/role.enum";
 import { Pagination } from "common/decorator/pagination.decorator";
 import { PaginationDto } from "common/dto/pagination.dto";
 
 @Controller("category")
-@AuthDecorator()
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
   @Post()

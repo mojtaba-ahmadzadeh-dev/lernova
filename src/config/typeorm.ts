@@ -13,9 +13,9 @@ let dataSource = new DataSource({
   username: DB_USERNAME,
   database: DB_NAME,
   port: Number(DB_PORT),
-  synchronize: false,
+  synchronize: true,
   entities: [__dirname + "/../**/*.entity.{ts,js}"],
-  migrations: [__dirname + "/../migrations/*{.ts,.js}"],
+  migrations: [__dirname + "/../modules/**/migrations/*{.ts,.js}"],
   migrationsTableName: "lernova_migration_db",
 });
 

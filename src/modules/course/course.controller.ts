@@ -14,7 +14,6 @@ import { UpdateCourseDto } from "./dto/update-course.dto";
 import { CourseDto, FilterCourseDto } from "./dto/create-course.dto";
 
 import { ApiConsumes } from "@nestjs/swagger";
-import { AuthDecorator } from "common/decorator/auth.decorator";
 import { CourseService } from "./course.service";
 import { CanAccess, SkipAuth } from "common/decorator/skip-auth-decorator";
 import { UploadFile } from "common/utils/multer.util";
@@ -25,7 +24,7 @@ import { PaginationDto } from "common/dto/pagination.dto";
 
 
 @Controller("course")
-@AuthDecorator()
+
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 

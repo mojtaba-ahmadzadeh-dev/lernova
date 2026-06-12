@@ -4,12 +4,14 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
+  ManyToOne,
 } from "typeorm";
 import { otpEntity } from "./otp.entity";
 import { EntityNames } from "common/enums/entity.enum";
 import { BaseEntity } from "common/abestract/base.entity";
-import { Role } from "common/enums/role.enum";
 import { CourseEntity } from "modules/course/entities/course.entity";
+import { RoleEntity } from "modules/rbac/entities/role.entity";
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {
@@ -23,8 +25,14 @@ export class UserEntity extends BaseEntity {
   password: string;
   @Column({ default: false })
   isBanned: boolean;
-  @Column({ type: "enum", default: Role.User, enum: Role })
-  role: Role;
+  @ManyToOne(() => RoleEntity, {
+    eager: false,
+    nullable: false,
+  })
+  @JoinColumn({ name: "role_id" })
+  role: RoleEntity;
+  @Column()
+  role_id: string;
   @Column({ nullable: true })
   avatar?: string;
   @Column({ default: false })

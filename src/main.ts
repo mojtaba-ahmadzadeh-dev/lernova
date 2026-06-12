@@ -7,16 +7,16 @@ import { SwaggerConfigInit } from "./config/swagger.config";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-app.useGlobalPipes(
-  new ValidationPipe({
-    transform: true,
-    whitelist: true, 
-    forbidNonWhitelisted: true,
-    transformOptions: {
-      enableImplicitConversion: true,
-    },
-  })
-);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
   SwaggerConfigInit(app);
   const port = Number(process.env.PORT) || 3000;
   await app.listen(port, () => {
