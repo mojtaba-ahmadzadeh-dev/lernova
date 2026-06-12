@@ -24,7 +24,6 @@ import { PaginationDto } from "common/dto/pagination.dto";
 
 
 @Controller("course")
-
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
