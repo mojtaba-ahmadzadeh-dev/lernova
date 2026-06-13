@@ -25,24 +25,24 @@ export class BasketController {
     return this.basketService.addToBasket(basketDto);
   }
 
-  // @Get()
-  // basket() {
-  //   return this.basketService.getBasket();
-  // }
+  @Get()
+  basket() {
+    return this.basketService.getBasket();
+  }
 
-  // @Post("/discount")
-  // @Permissions("apply_discount_for_basket")
-  // @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
-  // applyDiscountForBasket(@Body() discountBasketDto: DiscountBasketDto) {
-  //   return this.basketService.applyDiscount(discountBasketDto);
-  // }
+  @Post("/discount")
+  @Permissions("apply_discount_for_basket")
+  @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
+  applyDiscountForBasket(@Body() discountBasketDto: DiscountBasketDto) {
+    return this.basketService.applyDiscount(discountBasketDto);
+  }
 
-  // @Delete("discount")
-  // @Permissions("remove:descount")
-  // @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
-  // removeDiscountFormBasket(@Body() discountBasketDto: DiscountBasketDto) {
-  //   return this.basketService.removeDiscountFormBasket(discountBasketDto);
-  // }
+  @Delete("discount")
+  @Permissions("remove:descount")
+  @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
+  removeDiscountFormBasket(@Body() discountBasketDto: DiscountBasketDto) {
+    return this.basketService.removeDiscountFormBasket(discountBasketDto);
+  }
 
   @Delete("/remove/:id")
   removeFromBasketId(@Param("id") id: number) {
