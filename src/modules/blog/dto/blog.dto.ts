@@ -6,7 +6,8 @@ import {
   Length,
 } from "class-validator";
 import { ApiProperty, ApiPropertyOptional, PartialType } from "@nestjs/swagger";
-import { BlogStatus } from "src/common/decorator/status.enum";
+import { BlogStatus } from "common/decorator/status.enum";
+
 
 export class BlogDto {
   @ApiProperty()
@@ -33,7 +34,6 @@ export class BlogDto {
 }
 
 export class UpdateBlogDto {
-  // دکوراتورهای اضافی که باعث خطا در رشته‌های خالی می‌شوند را بردارید
   @ApiPropertyOptional()
   @IsOptional()
   title?: string;
