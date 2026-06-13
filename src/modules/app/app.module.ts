@@ -8,18 +8,41 @@ import { join } from "path";
 // import { TypeOrmDbConfig } from "src/config/typeorm.config";
 // import { UserModule } from "../user/user.module";
 import { HttpModule } from "@nestjs/axios";
+import { AuthModule } from "../auth/auth.module";
+import { UserModule } from "../user/user.module";
+import { TypeOrmDbConfig } from "../../config/typeorm.config";
+import { CategoryModule } from "modules/category/category.module";
+import { CourseModule } from "modules/course/course.module";
+import { RbacModule } from "modules/rbac/rbac.module";
+import { ChapterModule } from "modules/chapter/chapter.module";
+import { SesstionModule } from "modules/sesstion/sesstion.module";
+import { BlogModule } from "modules/blog/blog.module";
+import { CommentModule } from "modules/comment/comment.module";
+import { BasketModule } from "modules/basket/basket.module";
+import { DiscountModule } from "modules/discount/discount.module";
+import { OrderModule } from "modules/order/order.module";
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   isGlobal: true,
-    //   envFilePath: join(process.cwd(), ".env"),
-    // }),
-    // TypeOrmModule.forRootAsync({
-    //   // useClass: TypeOrmDbConfig,
-    // }),
-    // AuthModule,
-    // UserModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: join(process.cwd(), ".env"),
+    }),
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmDbConfig,
+    }),
+    AuthModule,
+    UserModule,
+    CategoryModule,
+    CourseModule,
+    RbacModule,
+    ChapterModule,
+    SesstionModule,
+    BlogModule,
+    CommentModule,
+    BasketModule,
+    DiscountModule,
+    OrderModule
   ],
   controllers: [AppController],
   providers: [AppService],
