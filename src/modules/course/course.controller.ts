@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Query,
+  UseGuards,
 } from "@nestjs/common";
 import { UpdateCourseDto } from "./dto/update-course.dto";
 import { CourseDto, FilterCourseDto } from "./dto/create-course.dto";
@@ -21,14 +22,18 @@ import { SwaggerConsumes } from "common/enums/swagger-consumes.enum";
 import { Role } from "common/enums/role.enum";
 import { Pagination } from "common/decorator/pagination.decorator";
 import { PaginationDto } from "common/dto/pagination.dto";
-
+import { Permissions } from "common/decorator/permission.decorator";
+import { PermissionsList } from "common/constants/permissions.constants";
+import { RbacGuard } from "modules/rbac/guard/rbac.guard";
+import { RbacDecorator } from "common/decorator/auth.decorator";
 
 @Controller("course")
+@RbacDecorator()
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
   @Post()
-  @CanAccess(Role.Admin)
+  @Permissions(PermissionsList.CREATE_COURSE)
   @ApiConsumes(SwaggerConsumes.MultipartData)
   @UseInterceptors(UploadFile("cover", "course"))
   create(
@@ -49,7 +54,7 @@ export class CourseController {
   }
 
   @Patch("/:id")
-  @CanAccess(Role.Admin)
+  @Permissions(PermissionsList.UPDATE_COURSE)
   @ApiConsumes(SwaggerConsumes.MultipartData)
   @UseInterceptors(UploadFile("cover", "course"))
   update(
@@ -61,7 +66,7 @@ export class CourseController {
   }
 
   @Delete("/:id")
-  @CanAccess(Role.Admin)
+  @Permissions(PermissionsList.REMOVE_COURSE)
   remove(@Param("id") id: number) {
     return this.courseService.remove(id);
   }

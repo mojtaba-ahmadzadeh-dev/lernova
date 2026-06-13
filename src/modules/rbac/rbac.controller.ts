@@ -14,6 +14,7 @@ import { CreateRbacDto, CreateRoleDto } from "./dto/create-rbac.dto";
 import { Permissions } from "common/decorator/permission.decorator";
 import { RbacGuard } from "./guard/rbac.guard";
 import { ApiTags } from "@nestjs/swagger";
+import { PermissionsList } from "common/constants/permissions.constants";
 
 @Controller("rbac")
 @ApiTags("RBAC")
@@ -22,30 +23,31 @@ export class RbacController {
   constructor(private rbacService: RbacService) {}
 
   @Post("roles")
-  @Permissions("role:create")
+  @Permissions(PermissionsList.CREATE_ROLE)
   async createRole(@Body() dto: CreateRoleDto) {
     return this.rbacService.create(dto);
   }
 
   @Get("permissions")
-  @Permissions("all")
+  @Permissions(PermissionsList.ALL)
   async getAllPermissions() {
     return this.rbacService.findAllPermissions();
   }
 
   @Get("roles")
+  @Permissions(PermissionsList.ALL)
   getAllRoles() {
     return this.rbacService.getAllRoles();
   }
 
   @Get("roles/:id")
-  @Permissions("all")
+  @Permissions(PermissionsList.ALL)
   async getRoleById(@Param("id") id: number) {
     return this.rbacService.getRoleById(id);
   }
 
   @Post("roles/:roleId/permissions/:permissionId")
-  @Permissions("all")
+  @Permissions(PermissionsList.ALL)
   async assignPermissionToRole(
     @Param("roleId") roleId: number,
     @Param("permissionId") permissionId: number,
@@ -54,12 +56,13 @@ export class RbacController {
   }
 
   @Post("permissions")
-  @Permissions("all")
+  @Permissions(PermissionsList.ALL)
   async createPermission(@Body() dto: CreateRbacDto) {
     return this.rbacService.createPermission(dto);
   }
 
   @Delete("role/:id")
+  @Permissions(PermissionsList.ALL)
   deleteRole(@Param("id") id: number) {
     return this.rbacService.deleteRole(id);
   }

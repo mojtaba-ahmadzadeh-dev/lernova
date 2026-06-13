@@ -4,11 +4,14 @@ import { CategoryController } from './category.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryEntity } from './entities/category.entity';
 import { AuthModule } from '../auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
+import { UserModule } from 'modules/user/user.module';
+import { RbacGuard } from 'modules/rbac/guard/rbac.guard';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([CategoryEntity])],
+  imports: [AuthModule,UserModule, TypeOrmModule.forFeature([CategoryEntity])],
   controllers: [CategoryController],
-  providers: [CategoryService],
+  providers: [CategoryService, JwtService],
   exports: [CategoryService, TypeOrmModule],
 })
 export class CategoryModule {}

@@ -5,21 +5,24 @@ import { AuthModule } from "../auth/auth.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { BasketEntity } from "./entities/basket.entity";
 import { DiscountEntity } from "../discount/entities/discount.entity";
-import { CourseService } from "../course/services/course.service";
-import { DiscountService } from "../discount/discount.service";
 import { CourseEntity } from "../course/entities/course.entity";
 import { CourseModule } from "../course/course.module";
 import { DiscountModule } from "../discount/discount.module";
+import { RbacModule } from "modules/rbac/rbac.module";
+import { JwtModule, JwtService } from "@nestjs/jwt";
+import { UserModule } from "modules/user/user.module";
 
 @Module({
   imports: [
     AuthModule,
+    UserModule,
     TypeOrmModule.forFeature([BasketEntity, DiscountEntity, CourseEntity]),
-    CourseModule, // 👈 به جای CourseService
+    CourseModule,
     DiscountModule,
+    RbacModule
   ],
   controllers: [BasketController],
   providers: [BasketService],
-  exports: [BasketService]
+  exports: [BasketService],   
 })
 export class BasketModule {}

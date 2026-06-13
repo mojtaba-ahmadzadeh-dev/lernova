@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { RbacService } from './rbac.service';
 import { RbacController } from './rbac.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,11 +9,15 @@ import { UserEntity } from 'modules/user/entities/user.entity';
 import { RbacRepository } from './repository/rbac.repository';
 import { RbacGuard } from './guard/rbac.guard';
 import { UserRepository } from 'modules/user/user.repository';
-import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([RoleEntity, PermissionEntity, UserEntity]),
+    
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
   controllers: [RbacController],
   providers: [
@@ -20,13 +25,12 @@ import { JwtService } from '@nestjs/jwt';
     RbacRepository,
     RbacGuard,
     UserRepository,
-    JwtService,
   ],
   exports: [
     RbacService,
     RbacGuard,
     RbacRepository,
-    JwtService
+    JwtModule
   ],
 })
 export class RbacModule {}
