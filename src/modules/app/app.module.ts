@@ -20,6 +20,7 @@ import { BlogModule } from "modules/blog/blog.module";
 import { CommentModule } from "modules/comment/comment.module";
 import { BasketModule } from "modules/basket/basket.module";
 import { DiscountModule } from "modules/discount/discount.module";
+import { OrderModule } from "modules/order/order.module";
 
 @Module({
   imports: [
@@ -40,7 +41,8 @@ import { DiscountModule } from "modules/discount/discount.module";
     BlogModule,
     CommentModule,
     BasketModule,
-    DiscountModule
+    DiscountModule,
+    OrderModule
   ],
   controllers: [AppController],
   providers: [AppService],

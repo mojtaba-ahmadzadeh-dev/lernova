@@ -13,6 +13,7 @@ import { UserEntity } from "modules/user/entities/user.entity";
 import { ChapterEntity } from "modules/chapter/entities/chapter.entity";
 import { CommentEntity } from "modules/comment/entities/comment.entity";
 import { BasketEntity } from "modules/basket/entities/basket.entity";
+import { OrderItemEntity } from "modules/order/entities/order-item.entity";
 
 @Entity(EntityNames.Course)
 export class CourseEntity extends BaseEntity {
@@ -52,8 +53,8 @@ export class CourseEntity extends BaseEntity {
   comments: CommentEntity[];
   @OneToMany(() => BasketEntity, (basket) => basket.course)
   baskets: BasketEntity[];
-  // @OneToMany(() => OrderItemEntity, (order) => order.course)
-  // orders: OrderItemEntity[];
+  @OneToMany(() => OrderItemEntity, (order) => order.course)
+  orders: OrderItemEntity[];
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
