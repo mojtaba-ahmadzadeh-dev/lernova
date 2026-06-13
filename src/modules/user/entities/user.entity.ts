@@ -17,6 +17,7 @@ import { BlogLikesEntity } from "modules/blog/entities/blog-likes.entity";
 import { BlogBookmarkEntity } from "modules/blog/entities/blog-bookmark.entity";
 import { CommentEntity } from "modules/comment/entities/comment.entity";
 import { BasketEntity } from "modules/basket/entities/basket.entity";
+import { OrderEntity } from "modules/order/entities/order.entity";
 
 @Entity(EntityNames.User)
 export class UserEntity extends BaseEntity {
@@ -60,4 +61,6 @@ export class UserEntity extends BaseEntity {
   comments: CommentEntity[];
   @OneToMany(() => BasketEntity, (basket) => basket.user)
   basket: BasketEntity[];
+  @OneToMany(() => OrderEntity, (order) => order.user)
+  orders: OrderEntity[];
 }
