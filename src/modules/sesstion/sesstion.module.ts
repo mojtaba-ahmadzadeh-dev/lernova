@@ -5,10 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SesstionEntity } from './entities/sesstion.entity';
 import { ChapterEntity } from '../chapter/entities/chapter.entity';
 import { AuthModule } from '../auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
+import { UserModule } from 'modules/user/user.module';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([SesstionEntity, ChapterEntity])],
+  imports: [AuthModule, UserModule, TypeOrmModule.forFeature([SesstionEntity, ChapterEntity])],
   controllers: [SesstionController],
-  providers: [SesstionService],
+  providers: [SesstionService, JwtService],
 })
 export class SesstionModule {}

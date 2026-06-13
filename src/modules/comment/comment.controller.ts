@@ -11,8 +11,10 @@ import { CommentService } from "./comment.service";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { Permissions } from "common/decorator/permission.decorator";
 import { SkipAuth } from "common/decorator/skip-auth-decorator";
+import { RbacDecorator } from "common/decorator/auth.decorator";
 
 @Controller("comment")
+@RbacDecorator()
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 

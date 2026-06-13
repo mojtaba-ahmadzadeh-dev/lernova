@@ -25,6 +25,7 @@ export class CourseDto {
   @IsOptional()
   price: number;
   @ApiProperty({ type: "string", format: "binary" })
+  @IsOptional()
   cover: string;
   @ApiProperty({ type: "boolean", required: false })
   @TransformToBoolean()
@@ -39,6 +40,7 @@ export class CourseDto {
   @IsOptional()
   hasCertificate: boolean;
   @ApiProperty({ type: "string", isArray: true })
+  @IsString()
   categories: string[] | string;
 }
 
@@ -66,12 +68,12 @@ export class FilterCourseDto {
   search?: string;
   @ApiPropertyOptional()
   @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true) 
+  @Transform(({ value }) => value === "true" || value === true)
   @IsBoolean()
   isFree?: boolean;
   @ApiPropertyOptional()
   @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true)
+  @Transform(({ value }) => value === "true" || value === true)
   @IsBoolean()
   isPublished?: boolean;
   @ApiPropertyOptional()

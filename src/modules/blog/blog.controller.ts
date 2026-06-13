@@ -19,13 +19,16 @@ import { ApiConsumes } from "@nestjs/swagger";
 import { SwaggerConsumes } from "common/enums/swagger-consumes.enum";
 import { Permissions } from "common/decorator/permission.decorator";
 import { SkipAuth } from "common/decorator/skip-auth-decorator";
+import { PermissionsList } from "common/constants/permissions.constants";
+import { RbacDecorator } from "common/decorator/auth.decorator";
 
 @Controller("blog")
+@RbacDecorator()
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
   @Post()
-  @Permissions("create:blog")
+  @Permissions(PermissionsList.CREATE_ROLE)
   @ApiConsumes(SwaggerConsumes.MultipartData)
   @UseInterceptors(FileInterceptor("image"))
   async create(
@@ -72,7 +75,7 @@ export class BlogController {
   }
 
   @Patch("/:id")
-  @Permissions("update:blog_by_id")
+  @Permissions(PermissionsList.UPDATE_BLOG)
   @ApiConsumes(SwaggerConsumes.MultipartData)
   @UseInterceptors(FileInterceptor("image"))
   async update(

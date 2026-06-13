@@ -18,6 +18,8 @@ import { ChapterModule } from "modules/chapter/chapter.module";
 import { SesstionModule } from "modules/sesstion/sesstion.module";
 import { BlogModule } from "modules/blog/blog.module";
 import { CommentModule } from "modules/comment/comment.module";
+import { BasketModule } from "modules/basket/basket.module";
+import { DiscountModule } from "modules/discount/discount.module";
 
 @Module({
   imports: [
@@ -36,7 +38,9 @@ import { CommentModule } from "modules/comment/comment.module";
     ChapterModule,
     SesstionModule,
     BlogModule,
-    CommentModule
+    CommentModule,
+    BasketModule,
+    DiscountModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -12,10 +12,10 @@ import { UserRepository } from './user.repository';
   imports: [
     AuthModule,
     TypeOrmModule.forFeature([UserEntity, RoleEntity]),
-    RbacModule,               // باید import بشه
+    RbacModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository],
-  exports: [UserService]
+  exports: [UserService, UserRepository]
 })
 export class UserModule {}

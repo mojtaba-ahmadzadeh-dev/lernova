@@ -2,6 +2,7 @@ import { BaseEntity } from "common/abestract/base.entity";
 import { BasketDiscountType } from "common/enums/discount-type.enum";
 import { EntityNames } from "common/enums/entity.enum";
 import { CourseEntity } from "modules/course/entities/course.entity";
+import { DiscountEntity } from "modules/discount/entities/discount.entity";
 import { UserEntity } from "modules/user/entities/user.entity";
 import { Column, Entity, ManyToOne } from "typeorm";
 
@@ -23,8 +24,8 @@ export class BasketEntity extends BaseEntity {
   course: CourseEntity;
   @ManyToOne(() => UserEntity, (user) => user.basket, { onDelete: "CASCADE" })
   user: UserEntity;
-  // @ManyToOne(() => DiscountEntity, (discount) => discount.baskets, {
-  //   onDelete: "CASCADE",
-  // })
-  // discount: DiscountEntity;
+  @ManyToOne(() => DiscountEntity, (discount) => discount.baskets, {
+    onDelete: "CASCADE",
+  })
+  discount: DiscountEntity;
 }

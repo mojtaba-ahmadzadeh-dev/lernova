@@ -17,8 +17,10 @@ import { SwaggerConsumes } from "common/enums/swagger-consumes.enum";
 import { Permissions } from "common/decorator/permission.decorator";
 import { UploadFile } from "common/utils/multer.util";
 import { SkipAuth } from "common/decorator/skip-auth-decorator";
+import { RbacDecorator } from "common/decorator/auth.decorator";
 
 @Controller("sesstion")
+@RbacDecorator()
 export class SesstionController {
   constructor(private readonly sesstionService: SesstionService) {}
 

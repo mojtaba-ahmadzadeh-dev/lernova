@@ -9,11 +9,15 @@ import { BlogLikesEntity } from "./entities/blog-likes.entity";
 import { BlogBookmarkEntity } from "./entities/blog-bookmark.entity";
 import { CategoryService } from "../category/category.service";
 import { CategoryModule } from "../category/category.module";
+import { RbacModule } from "modules/rbac/rbac.module";
+import { UserModule } from "modules/user/user.module";
 
 @Module({
   imports: [
     AuthModule,
     CategoryModule,
+    RbacModule,
+    UserModule,
     TypeOrmModule.forFeature([
       BlogEntity,
       BlogCategoryEntity,
