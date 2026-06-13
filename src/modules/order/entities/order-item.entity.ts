@@ -5,7 +5,6 @@ import { BaseEntity } from "common/abestract/base.entity";
 import { OrderItemStatus } from "common/enums/status.enum";
 import { CourseEntity } from "modules/course/entities/course.entity";
 
-
 @Entity(EntityNames.OrderItem)
 export class OrderItemEntity extends BaseEntity {
   @Column()
